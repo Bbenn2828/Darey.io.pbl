@@ -6,7 +6,7 @@ Installing apache2
 $ sudo apt update
 $ sudo apt install apache2
 $ sudo systemctl staus apache2
-###![Capture](https://user-images.githubusercontent.com/82408358/114868432-c2046080-9daa-11eb-9747-e0d89c8e1ca8.PNG)
+![Capture](https://user-images.githubusercontent.com/82408358/114868432-c2046080-9daa-11eb-9747-e0d89c8e1ca8.PNG)
 
 
 To test if the Apache HTTP server can respond to request from the internet, open a web browser and input
@@ -39,5 +39,6 @@ This will open a blank file. Add the following text, which is valid PHP code, in
 phpinfo();
 When you are finished, save and close the file, refresh the page and you will see a page similar to this:
 
-![php debug](https://user-images.githubusercontent.com/82408358/114984104-3c35f300-9e46-11eb-973d-057765a44608.PNG)
+![php debug](https://user-images.githubusercontent.com/82408358/114984785-ef065100-9e46-11eb-95cc-06d33a272ec4.PNG)
+
 
