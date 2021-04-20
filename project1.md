@@ -15,9 +15,13 @@ http://<Public-IP-Address>:80  for the following image
   ![apache2](https://user-images.githubusercontent.com/82408358/114871519-35f43800-9dae-11eb-8a19-a6b804fd311d.PNG)
 
 Installing MySQL
-$ sudo apt install mysql-server
-When prompted, confirm installation by typing Y, and then ENTER.
-$ sudo mysql_secure_installation
+```
+sudo apt install mysql-server
+```
+* When prompted, confirm installation by typing Y, and then ENTER.
+```
+sudo mysql_secure_installation
+```
 Answer Y for yes, or anything else to continue without enabling.
 
 VALIDATE PASSWORD PLUGIN can be used to test passwords
@@ -26,19 +30,21 @@ and allows the users to set only those passwords which are
 secure enough. Would you like to setup VALIDATE PASSWORD plugin?
 Press y|Y for Yes, any other key for No:
 
-To confirm MySQL has been successfully installed: Input $ sudo mysql
+* To confirm MySQL has been successfully installed: Input $ sudo mysql
 
 ![mysql](https://user-images.githubusercontent.com/82408358/114874148-e4997800-9db0-11eb-86ae-475e3714d243.PNG)
 
 Enable PHP on the website. Create a new file named index.php inside your custom web root folder:
 
-$ vim /var/www/projectlamp/index.php
+```
+vim /var/www/projectlamp/index.php
+```
 This will open a blank file. Add the following text, which is valid PHP code, inside the file:
 
 <?php
 phpinfo();
 When you are finished, save and close the file, refresh the page and you will see a page similar to this:
 
-![php debug](https://user-images.githubusercontent.com/82408358/114984785-ef065100-9e46-11eb-95cc-06d33a272ec4.PNG)
+![php_debug](https://user-images.githubusercontent.com/82408358/114984785-ef065100-9e46-11eb-95cc-06d33a272ec4.PNG)
 
 
