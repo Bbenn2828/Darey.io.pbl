@@ -1,7 +1,9 @@
 
 ##WEB STACK IMPLEMENTATION (LAMP STACK) IN AWS
 A technology stack is a set of frameworks and tools used to develop a software product. This set of frameworks and tools are very specifically chosen to work together in creating a well-functioning software. They are acronymns for individual technologies used together for a specific technology product.
+
 Step 1 — Installing Apache and Updating the Firewall
+
 Install Apache using Ubuntu’s package manager ‘apt’:
 update a list of packages in package manager
 ```
@@ -46,6 +48,7 @@ Apache Ubuntu Default Page
 
 
 Step 2 — Installing MySQL
+
 Now that you have a web server up and running, you need to install a Database Management System (DBMS) to be able to store and manage data for your site in a relational database. 
 ```
 sudo apt install mysql-server
@@ -98,11 +101,15 @@ mysql>
 
 To exit the MySQL console, type:
 mysql> exit or \q
+
 Notice that you didn’t need to provide a password to connect as the root user, even though you have defined one when running the mysql_secure_installation script. That is because the default authentication method for the administrative MySQL user is unix_socket instead of password. Even though this might look like a security concern at first, it makes the database server more secure because the only users allowed to log in as the root MySQL user are the system users with sudo privileges connecting from the console or through an application running with the same privileges. In practical terms, that means you won’t be able to use the administrative database root user to connect from your PHP application. Setting a password for the root MySQL account works as a safeguard, in case the default authentication method is changed from unix_socket to password.
 For increased security, it’s best to have dedicated user accounts with less expansive privileges set up for every database, especially if you plan on having multiple databases hosted on your server.
 
 Next, we will install PHP, the final component in the LAMP stack.
+
+
 Step 3 — Installing PHP
+
 You have Apache installed to serve your content and MySQL installed to store and manage your data. PHP is the component of our setup that will process code to display dynamic content to the end user. In addition to the php package, you’ll need php-mysql, a PHP module that allows PHP to communicate with MySQL-based databases. You’ll also need libapache2-mod-php to enable Apache to handle PHP files. Core PHP packages will automatically be installed as dependencies.
 To install these 3 packages at once, run:
 
@@ -118,7 +125,6 @@ Copyright (c) The PHP Group
 Zend Engine v3.4.0, Copyright (c) Zend Technologies 
 
 or 
-
 ```
 sudo where php
 ```
@@ -130,6 +136,7 @@ Your LAMP stack is completely installed and fully operational.
 •	[x] PHP
 
 Now lets test our set-up by creating  an  Apache Virtual Host to hold your website’s files and folders. Virtual host allows you to have multiple websites located on a single machine and users of the websites will not even notice it.
+
 
 Step 4 — Creating a Virtual Host for your Website using Apache
 
@@ -209,6 +216,7 @@ http://<Public-IP-Address>:80
 
 If you see the text from ‘echo’ command you wrote to index.html file, then it means your Apache virtual host is working as expected. In the output you will see your server’s public hostname (DNS name) and public IP address. You can also access your website in your browser by public DNS name, not only by IP - try it out, the result must be the same (port is optional)
 http://<Public-DNS-Name>:80
+
 
 Step 5 — Enable PHP on the website
 
