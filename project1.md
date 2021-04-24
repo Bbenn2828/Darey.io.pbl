@@ -18,27 +18,26 @@ To verify that apache2 is running as a Service in our OS, use following command
 ```
 sudo systemctl status apache2
 ```
-If it is green and running, then you did everything correctly. Before we can receive any traffic by our Web Server, we need to open TCP port 80 which is the default port that web browsers use to access web pages on the Internet
-As we know, we have TCP port 22 open by default on our EC2 machine to access it via SSH, so we need to add a rule to EC2 configuration to open inbound connection through port 80:
+If it is green and running, then you did everything correctly. Before we can receive any traffic by our Web Server, open TCP port 80 which is the default port that web browsers use to access web pages on the Internet
+TCP port 22 is open by default on our EC2 machine to access it via SSH, so we need to add a rule to EC2 configuration to open inbound connection through port 80:
 Open inbound port 80
+
 Our server is running and we can access it locally and from the Internet (Source 0.0.0.0/0 means ‘from any IP address’).
-First, let us try to check how we can access it locally in our Ubuntu shell, run:
+To access it locally in Ubuntu shell, run:
 ```
 curl http://localhost:80
 ```
 or
-
 ```
  curl http://127.0.0.1:80
 ```
-These two commands above actually do pretty much the same - they use ‘curl’ command to request our Apache HTTP Server on port 80 (actually you can even try to not specify any port - it will work anyway). 
+These two commands above use ‘curl’ command to request our Apache HTTP Server on port 80 (actually you can even try to not specify any port - it will work anyway). 
 
 To test how our Apache HTTP server can respond to requests from the Internet. Open a web browser of your choice and try to access following url
 ```
 http://<Public-IP-Address>:80
 ```
 Another way to retrieve your Public IP address, other than to check it in AWS Web console, is to use following command:
-
 ```
 curl -s http://169.254.169.254/latest/meta-data/public-ipv4
 ```
@@ -49,7 +48,7 @@ Apache Ubuntu Default Page
 
 Step 2 — Installing MySQL
 
-Now that you have a web server up and running, you need to install a Database Management System (DBMS) to be able to store and manage data for your site in a relational database. 
+Now that you have a web server up and running, you need to install a Database Management System (DBMS) to be able to store and manage data for your site in a relational database. Run:
 ```
 sudo apt install mysql-server
 ```
@@ -80,7 +79,7 @@ If you enabled password validation, you’ll be shown the password strength for 
 
 For the rest of the questions, press Y and hit the ENTER key at each prompt. This will remove some anonymous users and the test database, disable remote root logins, and load these new rules so that MySQL immediately respects the changes you have made.
 
-When you’re finished, test if you’re able to log in to the MySQL console by typing:
+When finished, test if you’re able to log in to the MySQL console by typing:
 ```
  sudo mysql
 ```
@@ -93,19 +92,19 @@ Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
 
 Oracle is a registered trademark of Oracle Corporation and/or its
 affiliates. Other names may be trademarks of their respective
-owners.
-
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+owners. 
+You will see:
 
 mysql> 
-
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 To exit the MySQL console, type:
+
 mysql> exit or \q
 
 Notice that you didn’t need to provide a password to connect as the root user, even though you have defined one when running the mysql_secure_installation script. That is because the default authentication method for the administrative MySQL user is unix_socket instead of password. Even though this might look like a security concern at first, it makes the database server more secure because the only users allowed to log in as the root MySQL user are the system users with sudo privileges connecting from the console or through an application running with the same privileges. In practical terms, that means you won’t be able to use the administrative database root user to connect from your PHP application. Setting a password for the root MySQL account works as a safeguard, in case the default authentication method is changed from unix_socket to password.
 For increased security, it’s best to have dedicated user accounts with less expansive privileges set up for every database, especially if you plan on having multiple databases hosted on your server.
 
-Next, we will install PHP, the final component in the LAMP stack.
+Next install PHP, the final component in the LAMP stack.
 
 
 Step 3 — Installing PHP
@@ -157,7 +156,7 @@ Then, create and open a new configuration file in Apache’s sites-available dir
 ```
 sudo vi /etc/apache2/sites-available/projectlamp.conf
 ```
-This will create a new blank file. Paste in the following bare-bones configuration by hitting on i on the keyboard to enter the insert mode, and paste the text:
+This will create a new blank file. Paste in the following bare-bones configuration by hitting on 'i' on the keyboard to enter the insert mode, and paste the text:
 <VirtualHost *:80>
     ServerName projectlamp
     ServerAlias www.projectlamp 
@@ -225,7 +224,7 @@ Once maintenance is over, the index.html is renamed or removed from the document
 To change this, you’ll need to edit the /etc/apache2/mods-enabled/dir.conf  file and change the order in which the index.php file is listed within the Directory Index directive. Type:
 
 ```
-sudo vim /etc/apache2/mods-enabled/dir.conf
+sudo vi /etc/apache2/mods-enabled/dir.conf
 ```
 Once the vim application is open; add the following text below:
 
@@ -241,12 +240,12 @@ After saving and closing the file, you will need to reload Apache so the changes
 ```
 sudo systemctl reload apache2
 ```
-Finally, we will create a PHP script to test that PHP is correctly installed and configured on your server.
-Now that you have a custom location to host your website’s files and folders, we’ll create a PHP test script to confirm that Apache is able to handle and process requests for PHP files.
+Finally, create a PHP script to test that PHP is correctly installed and configured on your server.
+Now that you have a custom location to host your website’s files and folders, create a PHP test script to confirm that Apache is able to handle and process requests for PHP files.
 
 Create a new file named index.php inside your custom web root folder:
 ```
-vim /var/www/projectlamp/index.php
+vi /var/www/projectlamp/index.php
 ```
 This will open a blank file. Add the following text, which is valid PHP code, inside the file:
 ```
